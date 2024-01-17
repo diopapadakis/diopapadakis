@@ -1,5 +1,5 @@
 - 👋 Hi, I’m Dennis (Dionysios) Papadakis
-- 👀 I’m interested in Mathematics, Economics and Porgramming 
+- 👀 I’m interested in Economics and Mathematics 
 - 🌱 I’m currently studying Math and Econ at NYU Shanghai, and for the past three years I've been traveling to Berlin, New York and Shanghai.
 - 📫 How to reach me: dp3329@nyu.edu or sotdio@gmail.com (personal)
 
