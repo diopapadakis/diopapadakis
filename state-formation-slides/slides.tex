@@ -268,26 +268,73 @@ nearby ones.
 \end{frame}
 
 %----------------------------------------------------------------------
+\begin{frame}{The delegation margin: what changes with $b$}
+Fix $(s_{t-1},q_t)$. $\bigl(z(b),i(b),s(b)\bigr)$ is period $t$'s societal equilibrium \emph{if}
+the priests' weight were $b$. Interior regime, $\underline\beta<b<\hat\beta(s_{t-1})$:
+\[
+\underbrace{z(b)=1-\frac{1-b}{bY}}_{\text{tax rule}},\qquad
+\underbrace{\psi\,i(b)=z(b)\,Y\,\frac{r'(s(b))}{r(s(b))}}_{\text{priests' FOC at the equilibrium tax}},\qquad
+s(b)=(1-\delta)s_{t-1}+i(b).
+\]
+\begin{itemize}
+\item $i(\cdot)$ is the \textbf{equilibrium investment map}; $i_t\equiv i(\beta_t)$ and
+$s_t\equiv s(\beta_t)$ are this period's values. Its slope:
+\[
+i'(b)=\frac{z'(b)\,Y\,(r'/r)(s(b))}{\psi-z(b)\,Y\,(r'/r)'(s(b))}>0
+\qquad\bigl(z'(b)=1/(b^2Y)>0,\ (r'/r)'<0\bigr).
+\]
+Channel: $b\uparrow\Rightarrow z\uparrow\Rightarrow$ the priests' marginal return
+$\tau\rho_sY=zY\,r'/r$ rises (they take $\tau$ as given) $\Rightarrow i\uparrow$.
+\item Revenue is $z(b)Y$ for any $s$, since $\tau=z(b)/\rho(s)$ adjusts. So
+$V_P(b)=z(b)Y-\tfrac\psi2 i(b)^2$: induced investment is a pure cost to the priests.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{The delegation margin: two effects}
+Updating objective $W(b)\equiv\beta_tV_P(b)+(1-\beta_t)V_F(b)$: the weights are fixed at the
+current $\beta_t$; only the allocation moves with $b$. In the interior regime, with religious
+farmers participating ($s(b)>\underline s$),
+\[
+W'(b)=
+\underbrace{z'(b)\Bigl[\beta_t\,Y-\frac{1-\beta_t}{1-z(b)}\Bigr]}_{\text{transfer effect}}
++\underbrace{i'(b)\Bigl[(1-\beta_t)\,q_t\theta_r\,v'(s(b))-\beta_t\,\psi\,i(b)\Bigr]}_{\text{capacity effect}} .
+\]
+\begin{itemize}
+\item \textbf{Transfer effect.} More weight raises the tax by $z'(b)$. Priests gain $Y$ per unit
+of tax, farmers lose $1/(1-z)$ in consumption utility. At $b=\beta_t$ the tax rule equates the
+two, so this term is \emph{zero}. It is negative for $b>\beta_t$: second order for small
+delegations, first order for large ones.
+\item \textbf{Capacity effect.} More weight induces $i'(b)$ more investment.
+\begin{itemize}
+\item Farmers gain services worth $q_t\theta_r\,v'(s)$ per unit: only religious farmers, and
+only if they participate.
+\item Priests pay the marginal cost $\psi\,i$ and get no extra revenue.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
 \begin{frame}{The delegation margin}
 \begin{lemma}[Delegation margin]
 In the interior regime, with religious farmers participating,
 \[
-\frac{d}{db}\Bigl[\beta_tV_P(b)+(1-\beta_t)V_F(b)\Bigr]_{b=\beta_t}
-= i'(\beta_t)\Bigl[(1-\beta_t)\,q_t\theta_r\,v'(s_t)-\beta_t\,\psi\,i_t\Bigr],
+W'(\beta_t)= i'(\beta_t)\Bigl[(1-\beta_t)\,q_t\theta_r\,v'(s_t)-\beta_t\,\psi\,i_t\Bigr],
 \qquad i'(\beta_t)>0 .
 \]
 Without participation it equals $-i'(\beta_t)\,\beta_t\,\psi\,i_t<0$.
 \end{lemma}
 \begin{itemize}
-\item \textbf{The tax drops out.} At $b=\beta_t$ the tax rule is already optimal for the current
-weights, so a marginal change in $z$ is a transfer whose weighted costs and benefits cancel.
-\item What is left is the \textbf{capacity} that extra power induces: farmers value it at
-$q_t\theta_rv'(s_t)$, priests pay $\psi i_t$. Locally,
+\item Only the capacity effect survives: farmers value more power for the priests exactly as
+much as the capacity it induces, $q_t\theta_rv'(s_t)$; the priests bear its cost, $\psi i_t$.
 \[
-\boxed{\ \beta_{t+1}>\beta_t\iff(1-\beta_t)\,q_t\theta_r\,v'(s_t)>\beta_t\,\psi\,i_t\ }
+\boxed{\ W'(\beta_t)>0\iff(1-\beta_t)\,q_t\theta_r\,v'(s_t)>\beta_t\,\psi\,i_t\ }
 \]
-\item Legitimacy is what makes delegation pay. With no believers, power falls to
-$\underline\beta$.
+\item \emph{Local} statement. The update is global, so large moves can still win (e.g.\
+stripping the priests of power, if that takes capacity below $\underline s$ and few farmers are
+religious). An interior steady state needs equality.
+\item With no believers $W'(\beta_t)<0$: power falls until the priests cannot tax,
+$\beta\le\underline\beta$.
 \end{itemize}
 \end{frame}
 
