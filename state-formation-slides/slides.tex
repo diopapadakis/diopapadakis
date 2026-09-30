@@ -1,0 +1,559 @@
+% Slides for advisor meeting: core of the model.
+% Compile with pdflatex + bibtex; needs references.bib (the paper's) in the same folder.
+\documentclass[11pt,aspectratio=169]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+% Look: same as the paper (Computer Modern serif, black text, blue links)
+\usefonttheme{serif}
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{alerted text}{fg=blue!75!black}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\footnotesize,shape=\itshape}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{bibliography item}{}
+\setbeamertemplate{frametitle continuation}{}
+\setbeamerfont{block title}{series=\bfseries}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={The Political Economy of State Formation after the Introduction of Agriculture},
+    }
+
+% Footer as in the paper: rule, page number on the right
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamertemplate{footline}{%
+  \hbox to \paperwidth{\hskip1.5em\vbox{\hsize=\dimexpr\paperwidth-3em\relax
+    \hrule height 0.6pt\vskip0.6ex
+    \hbox to \hsize{\hfill\usebeamerfont{footline}Page \insertframenumber}%
+    \vskip1.2ex}\hss}}
+
+\newtheorem{proposition}[theorem]{Proposition}
+
+\title{The Political Economy of State Formation\\after the Introduction of Agriculture}
+\author{Alberto Bisin \and Dionysios Papadakis}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}[plain,noframenumbering]
+\titlepage
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{What the model does}
+\begin{itemize}
+\item A \textbf{priesthood} builds and runs the central organisation of the polity: storage,
+redistribution, the calendar, ritual. This is \textbf{state capacity} $s$.
+\item Capacity is costly and the priests are paid \emph{only} through taxes. There is no
+commitment, so too little is built.
+\item Farmers can give the priests more \textbf{political weight} $\beta$ $\Rightarrow$ higher
+taxes $\Rightarrow$ higher return to building capacity.\\
+Farmers delegate power \alert{because they value the capacity it induces}.
+\item Only \textbf{religious} farmers value the temple's services. Religion is transmitted as in
+\citet{bisin2001}, so it spreads when the temple delivers.
+\item \textbf{Legibility} $\omega$ limits how much of the harvest can be taxed at all.
+\item Institutions are political weights updated as in \citet{bisin2024joint}. Culture,
+institutions and capacity co-evolve.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Patterns we want the model to speak to}
+\begin{enumerate}
+\item \textbf{Religious authority before administration.} Monumental Ubaid temples (Eridu) with no
+writing; writing appears in Late Uruk, as temple accounts. Same order in the Andes (Norte Chico).
+\item \textbf{Religious authority is common, states are rare.} Hierarchy rises with the
+appropriability of the staple crop \citep{mayshar2022}, at the chiefdom$\to$state margin but not
+at tribe$\to$chiefdom \citep{cook2026}.
+\item \textbf{Long stasis, fast transitions.} About six thousand years from the first storage to the
+first states in the Fertile Crescent; the transition itself takes a few centuries.
+\item \textbf{The early state's services are religious.} The temple is the household of the god;
+taxation and redistribution are the management of divine property.
+\end{enumerate}
+\end{frame}
+
+%----------------------------------------------------------------------
+\section{Model}
+
+\begin{frame}{Environment}
+Discrete time. A unit mass of farmers $F$ and a priesthood $P$ (a single agent) that runs the
+temple, which is also the central organisation of the polity.
+
+\medskip
+\begin{columns}[T]
+\column{0.44\textwidth}
+\textbf{State} $(s_t,\beta_t,q_t)$:
+\begin{itemize}
+\item $s_t\ge0$: state capacity;
+\item $\beta_t\in[0,1]$: priests' weight;
+\item $q_t\in[0,1]$: religious share.
+\end{itemize}
+\column{0.52\textwidth}
+\centering\small
+\begin{tabular}{l|cc}
+ & $\beta$ low & $\beta$ high \\
+\hline
+$s$ low & acephalous & ritual authority\\[3pt]
+$s$ high & limited delegation & temple state
+\end{tabular}
+\end{columns}
+
+\medskip
+\textbf{Within period $t$}, given $(s_{t-1},\beta_t,q_t)$:
+\begin{enumerate}
+\item the priests invest $i_t$ and the political process sets the tax $\tau_t$, simultaneously;
+\item religious farmers decide whether to join the cult;
+\item culture updates $q_{t+1}$ and institutions update $\beta_{t+1}$.
+\end{enumerate}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Farmers}
+Endowment $Y$, consumption $c_t=(1-z_t)Y$, where $z_t$ is the effective tax rate. Two cultural
+types $i\in\{r,n\}$. Joining the cult, $a\in\{0,1\}$, costs $e>0$:
+\[
+U^i_t=\log c_t+a\bigl(\theta_i\,v(G_t)-e\bigr),\qquad \theta_r>\theta_n=0,
+\]
+$G_t$ are the temple's services; $v$ increasing, strictly concave, $v(0)=0$, $v'(0)<\infty$
+(numerics: $v(G)=\log(1+G)$).
+\begin{itemize}
+\item Non-religious farmers never participate. Religious farmers participate iff
+$G_t\ge\underline s\equiv v^{-1}(e/\theta_r)$.
+\item Both types consume the same, so aggregate farmer welfare is
+\[
+\log c_t+q_t\,w(G_t),\qquad w(G)\equiv\max\{\theta_rv(G)-e,\,0\}.
+\]
+\item \alert{Legitimacy} $\equiv q_t\theta_r$: the weight society puts on the temple's services.
+It enters only preferences, not reach, the tax base or any cost.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Priests and capacity}
+The priests invest $i_t\ge0$ (available within the period):
+\[
+s_t=(1-\delta)s_{t-1}+i_t,\qquad \delta\in(0,1),
+\]
+and consume revenue net of the cost of investment:
+\[
+U^P_t=T_t-\frac{\psi}{2}\,i_t^2,\qquad \psi>0 .
+\]
+\begin{itemize}
+\item Services equal the capacity stock, $G_t=s_t$: the granaries, herds, officials and records
+that provide the services are the same ones that collect taxes.
+\item The priests are the only builders, and they are paid only out of $T_t$.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Reach and taxation}
+Share of the endowment within fiscal reach:
+\[
+\rho(s,\omega)=\omega\,r(s),\qquad r(s)=\frac{\kappa+s}{1+s},\qquad
+\omega\in(0,1],\ \kappa\in(0,1).
+\]
+\begin{itemize}
+\item $\omega$: \alert{legibility}, how much of the harvest can be assessed at all (cereals vs.\
+roots and tubers, \citealp{mayshar2017,mayshar2022}).
+\item $\kappa$: reach by presence alone, without records or officials.
+\item All that matters: $r$ increasing, strictly concave, $r(0)=\kappa>0$; $\omega$ scales reach
+proportionally.
+\end{itemize}
+Statutory rate $\tau_t\in[0,1]$ on activity within reach:
+\[
+z_t=\tau_t\,\rho(s_t,\omega),\qquad T_t=z_tY .
+\]
+Two limits on taxes: $\log c\to-\infty$ as $z\to1$, and $z\le\rho(s,\omega)<\omega\le1$.
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Within-period game: no commitment}
+Given $(s_{t-1},\beta_t,q_t)$, \emph{simultaneously}:
+\begin{itemize}
+\item the political process chooses $\tau$, taking $i_t$ as given, to maximise
+\[
+\beta_t\Bigl[\tau\rho(s_t,\omega)Y-\tfrac{\psi}{2}i_t^2\Bigr]
++(1-\beta_t)\Bigl[\log\bigl((1-\tau\rho(s_t,\omega))Y\bigr)+q_t\,w(s_t)\Bigr];
+\]
+\item the priests choose $i_t$, taking $\tau_t$ as given, to maximise
+$\tau_t\,\rho(s_t,\omega)\,Y-\tfrac{\psi}{2}i_t^2$.
+\end{itemize}
+\medskip
+\textbf{The friction} \citep[as in][]{bisin2024joint}: the political process cannot commit to a tax
+before capacity is built, and the priests cannot contract with farmers over investment.
+\begin{itemize}
+\item Farmers value capacity, but only the priests pay for it, and they are paid only through
+taxes.
+\item The political process trades off the priests' extraction against farmers' consumption; it
+does not internalise the value of capacity.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Societal equilibrium}
+\begin{lemma}[Societal equilibrium]
+For every $(s_{t-1},\beta_t)$ the equilibrium exists and is unique, with
+\[
+z_t=\min\bigl\{z(\beta_t),\ \rho(s_t,\omega)\bigr\},\qquad
+z(\beta)\equiv\max\Bigl\{0,\,1-\frac{1-\beta}{\beta Y}\Bigr\}.
+\]
+\begin{enumerate}[(i)]
+\item \emph{Interior}: $\tau_t<1$, $z_t=z(\beta_t)$, $\psi i_t=z(\beta_t)\,Y\,r'(s_t)/r(s_t)$:
+no $\omega$.
+\item \emph{Reach-constrained}: $\tau_t=1$, $z_t=\rho(s_t,\omega)$, $\psi i_t=\omega\,r'(s_t)\,Y$:
+no $\beta_t$.
+\end{enumerate}
+Regime (ii) iff $\beta_t\ge\hat\beta(s_{t-1})\equiv\bigl[1+Y\bigl(1-\rho(s^R_t,\omega)\bigr)\bigr]^{-1}$,
+where $s^R_t$ is the capacity the priests build at $\tau=1$.
+\end{lemma}
+\begin{itemize}
+\item In both regimes $\psi i_t=T_t\,r'(s_t)/r(s_t)$: whatever raises the tax base raises
+investment.
+\item No tax for $\beta\le\underline\beta\equiv1/(1+Y)$. Weight above $\hat\beta$ is
+\emph{nominal}: effective power is $\beta^{\rm eff}_t=\min\{\beta_t,\hat\beta(s_{t-1})\}$.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Legibility and investment}
+\begin{lemma}[Legibility and investment]
+Fix $(s_{t-1},\beta_t)$ with $\beta_t>\underline\beta$. There is a threshold $\hat\omega$,
+increasing in $\beta_t$, such that
+\begin{enumerate}[(i)]
+\item if $\omega<\hat\omega$, legibility binds: $\tau_t=1$ and
+$\dfrac{\partial i_t}{\partial\omega}=\dfrac{r'(s_t)\,Y}{\psi-\omega\,r''(s_t)\,Y}>0$;
+\item if $\omega>\hat\omega$, legibility does not bind: $\tau_t<1$ and $i_t$ does not depend on
+$\omega$.
+\end{enumerate}
+Investment is continuous, hence non-decreasing, in $\omega$.
+\end{lemma}
+\begin{itemize}
+\item Legibility is a \emph{ceiling}. When it binds, raising it raises the priests' return to
+capacity.
+\item When it does not bind, the political process offsets higher $\omega$ with a lower $\tau$:
+$z=\tau\rho$ and the return to capacity are unchanged.
+\item $\hat\omega$ rises with $\beta_t$: legibility matters over a wider range the more power the
+priests hold.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Institutional change}
+Political weights are updated between periods by the myopic rule of \citet{bisin2024joint}:
+\[
+\beta_{t+1}\in\arg\max_{b\in[0,1]}\ \Bigl\{\beta_t\,V_P(b)+(1-\beta_t)\,V_F(b)\Bigr\},
+\]
+\[
+V_P(b)=z(b)Y-\tfrac{\psi}{2}\,i(b)^2,\qquad
+V_F(b)=\log\bigl((1-z(b))Y\bigr)+q_t\,w\bigl(s(b)\bigr),
+\]
+the indirect utilities in the societal equilibrium at weight $b$, starting from $s_{t-1}$.
+\begin{itemize}
+\item Current weights evaluate alternative weights: institutions internalise effects that the
+within-period equilibrium does not.
+\item The objective is not concave in $b$ (flat below $\underline\beta$ and above $\hat\beta$,
+kink where $s(b)$ crosses $\underline s$), so the update compares \emph{all} weights, not only
+nearby ones.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{The delegation margin}
+\begin{lemma}[Delegation margin]
+In the interior regime, with religious farmers participating,
+\[
+\frac{d}{db}\Bigl[\beta_tV_P(b)+(1-\beta_t)V_F(b)\Bigr]_{b=\beta_t}
+= i'(\beta_t)\Bigl[(1-\beta_t)\,q_t\theta_r\,v'(s_t)-\beta_t\,\psi\,i_t\Bigr],
+\qquad i'(\beta_t)>0 .
+\]
+Without participation it equals $-i'(\beta_t)\,\beta_t\,\psi\,i_t<0$.
+\end{lemma}
+\begin{itemize}
+\item \textbf{The tax drops out.} At $b=\beta_t$ the tax rule is already optimal for the current
+weights, so a marginal change in $z$ is a transfer whose weighted costs and benefits cancel.
+\item What is left is the \textbf{capacity} that extra power induces: farmers value it at
+$q_t\theta_rv'(s_t)$, priests pay $\psi i_t$. Locally,
+\[
+\boxed{\ \beta_{t+1}>\beta_t\iff(1-\beta_t)\,q_t\theta_r\,v'(s_t)>\beta_t\,\psi\,i_t\ }
+\]
+\item Legitimacy is what makes delegation pay. With no believers, power falls to
+$\underline\beta$.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{No commitment is the friction}
+\begin{proposition}[Commitment benchmark]
+Suppose the political process chooses $\tau_t$ before the priests invest, anticipating their best
+response. Then for every $\beta_t$ the updating objective is maximised at $b=\beta_t$: political
+weights never change, and capacity, if any, is built at the prevailing weights.
+\end{proposition}
+\begin{itemize}
+\item Under commitment, the allocation chosen at any weight $b$ is also available to the process at
+weight $\beta_t$, which picks the best one for $\beta_t$. No $b$ can beat $\beta_t$.
+\item So delegation is a \alert{substitute for commitment}: farmers cannot promise the priests a
+return on capacity, so they give them the power to take it.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Cultural change}
+Socialisation as in \citet{bisin2001}: a child of a type-$i$ parent is socialised by the parent
+with probability $d^i$, and otherwise adopts the trait of a randomly drawn adult. Parents are
+imperfectly empathetic and evaluate the child's life at current services.
+
+\medskip
+Only participation differs across types, so
+\[
+\Delta V^r_t=\theta_r v(s_t)-e,\qquad \Delta V^n_t=e
+\qquad(\text{if } s_t>\underline s;\ \text{both zero otherwise}).
+\]
+With quadratic socialisation costs, $d^i=\lambda(1-q^i)\Delta V^i$ and
+\[
+q_{t+1}-q_t=\lambda\,q_t(1-q_t)\bigl[(1-q_t)\Delta V^r_t-q_t\Delta V^n_t\bigr].
+\]
+\begin{itemize}
+\item Religious parents want observance because they value the cult's services; non-religious
+parents see observance as a pure cost.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Religion follows the temple}
+\begin{lemma}[Religion follows the temple]
+If $s_t>\underline s$, the cultural dynamics have the unique interior attractor
+\[
+q^*(s_t)=1-\frac{e}{\theta_r\,v(s_t)},
+\]
+which is increasing in $s_t$. If $s_t\le\underline s$, neither type socialises and $q_{t+1}=q_t$:
+religion is frozen, or latent.
+\end{lemma}
+\begin{itemize}
+\item The \emph{fixed} observance cost $e$ is what makes religiosity respond to capacity. If the
+cost were proportional to $v(G)$, the two motives would be proportional and $q^*$ would not
+depend on $s$.
+\item Simplifications: parents evaluate at current services, not the services the child will face;
+religion has no effect on production or the tax base.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{The mechanism}
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  state/.style={draw, thick, rounded corners=3pt, fill=black!7, align=center,
+                minimum width=3cm, minimum height=0.9cm},
+  lab/.style={align=center, font=\footnotesize},
+  link/.style={-{Stealth[length=2.5mm]}, thick},
+]
+\node[state] (b) at (0,3.2)    {Political weight $\beta$};
+\node[state] (s) at (-4,0) {Capacity $s$};
+\node[state] (q) at (4,0)  {Religious share $q$};
+
+\draw[link] (b.west) to[out=180,in=90] coordinate[pos=0.45] (m1) (s.north);
+\draw[link] (s.east) -- node[lab, below=2pt] {religion follows the temple} (q.west);
+\draw[link] (q.north) to[out=90,in=0] (b.east);
+
+\node[lab] at (-1.9,1.5) {more power,\\ more investment};
+\node[lab] at (1.9,1.5)  {farmers delegate\\ for capacity};
+
+\node[lab, text=black!60] (om) at (-5.6,2.6) {legibility $\omega$\\ caps this link};
+\draw[-{Bar[width=2mm]}, black!50] (om.east) to[out=0,in=160] (m1);
+\end{tikzpicture}
+
+\bigskip
+\raggedright
+\begin{itemize}
+\item $\beta\to s$: societal equilibrium ($\psi i=T\,r'/r$), capped by $\omega$ at full reach.
+\item $s\to q$: religion follows the temple, $q^*(s)$ increasing.
+\item $q\to\beta$: delegation margin, farmers value capacity at $q\theta_rv'(s)$.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\section{Results}
+
+\begin{frame}{Formation: why the acephalous polity persists}
+\framesubtitle{Preliminary}
+Acephalous: $s_{t-1}=0$ and $\beta_t\le\underline\beta=1/(1+Y)$.
+\begin{enumerate}
+\item No tax $\Rightarrow$ no revenue $\Rightarrow$ no investment, so capacity stays at zero.
+\item Small changes in $\beta$ below $\underline\beta$ change nothing.
+\item A delegation just above $\underline\beta$ builds some capacity, but if $s<\underline s$ no one
+joins the cult and no one values it: a pure transfer to the priests, which the current weights
+reject. Culture is frozen as well.
+\end{enumerate}
+\medskip
+$\Rightarrow$ Only a delegation large enough to push capacity above $\underline s$ \emph{in a single
+period} can pay, and whether it does depends on how many farmers are (latently) religious.
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Leaving the acephalous state}
+\framesubtitle{Preliminary}
+\small
+From $s_{t-1}=0$: $z(b),s(b)$ the equilibrium at weight $b$, $A(b)=z(b)Y-\tfrac\psi2 s(b)^2$ the
+priests' payoff. $s^R_0(\omega)$ solves $\psi s=\omega\,r'(s)\,Y$; the legibility floor $\omega_0$
+solves $s^R_0(\omega_0)=\underline s$.
+\begin{proposition}[Leaving the acephalous state]
+Let $\beta_t<\underline\beta$ and let the religious share be $q_t$.
+\begin{enumerate}[(a)]
+\item If $\omega\le\omega_0$, the polity remains acephalous for every $q_t$.
+\item If $\omega>\omega_0$, it delegates and acquires capacity iff $q_t>\bar q(\beta_t;\omega)$,
+\[
+\bar q(\beta_t;\omega)=\min_{b:\ s(b)>\underline s}\
+\frac{-\beta_tA(b)-(1-\beta_t)\log\bigl(1-z(b)\bigr)}{(1-\beta_t)\bigl(\theta_rv(s(b))-e\bigr)}>0 .
+\]
+\item $\bar q$ is strictly decreasing in $\beta_t$ and $\theta_r$, strictly increasing in $e$.
+\item $\bar q$ is non-increasing in $\omega$, and constant once the minimising delegation leaves
+the priests below full reach.
+\end{enumerate}
+\end{proposition}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Formation: reading the threshold}
+\framesubtitle{Preliminary}
+\begin{itemize}
+\item Numerator: the cost of the delegation, a transfer to the priests that the current weights
+dislike ($\beta_t<\underline\beta$). Denominator: the benefit per believer once the cult is worth
+joining.
+\item \textbf{Substitutes for religion}: inherited authority $\beta_t$, a higher valuation
+$\theta_r$, a lower observance cost $e$.
+\item \textbf{Legibility matters only through a floor}: $\omega$ truncates the menu of delegations
+at full reach; once the truncation does not bind, more legibility does not help formation.
+\item \textbf{Forming is harder than keeping}: building $\underline s$ from nothing costs
+$\psi\underline s^2/2$, maintaining it costs $\psi(\delta\underline s)^2/2$. The acephalous polity
+and the state can both be long-run outcomes.
+\item \textbf{Stasis, then a fast transition}: the acephalous polity is absorbing, so formation waits
+for a slowly moving parameter (e.g.\ $\psi$) to push $\bar q$ below $q_t$.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Size of the state: steady-state loci}
+\framesubtitle{Preliminary}
+Steady states with $s>0$, $0<q<1$ and no nominal weight: $i=\delta s$ and $q=q^*(s)$.
+\begin{itemize}
+\item \textbf{Capacity locus} (the tax that makes the priests maintain $s$):
+\[
+z=Z_C(s)\equiv\frac{\psi\delta s\,r(s)}{Y\,r'(s)},\qquad\text{increasing}.
+\]
+\item \textbf{Institutional--cultural locus} (delegation margin $=0$ at $q=q^*(s)$):
+\[
+\frac{\beta}{1-\beta}=B(s)\equiv\frac{\bigl(\theta_r-e/v(s)\bigr)\,v'(s)}{\psi\delta s},
+\qquad\text{zero at }\underline s\text{, rises, then falls}.
+\]
+\item \textbf{Tax rule}: $\beta/(1-\beta)=1/\bigl(Y(1-z)\bigr)$.
+\end{itemize}
+Interior steady states solve $\ \Omega(s)\equiv Y\,B(s)\bigl(1-Z_C(s)\bigr)=1$.
+
+\medskip
+Legibility enters neither locus, only the \textbf{reach frontier} $z=\rho(s,\omega)$, which meets
+the capacity locus at $s^R(\omega)$: $\ \psi\delta s=\omega\,Y\,r'(s)$.
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Size of the state: the scarcer resource}
+\framesubtitle{Preliminary}
+\begin{proposition}[Long run]
+Suppose $\Omega$ is single-peaked on $(\underline s,\bar s)$ with $\max\Omega>1$, so that
+$\Omega=1$ has roots $s^L<s^H$. If $s^R(\omega)<s^L$ there is no steady state with positive
+capacity. Otherwise every such steady state has capacity $s^L$ or
+\[
+S_\infty=\min\bigl\{\,s^H,\ s^R(\omega)\,\bigr\},
+\]
+\emph{legitimacy-limited} ($\tau<1$) if $s^H\le s^R(\omega)$ and \emph{legibility-limited}
+($\tau=1$) otherwise. $S_\infty$ is a steady state if $(1-\delta)S_\infty>\underline s$, with
+\[
+z_\infty=Z_C(S_\infty),\qquad
+\beta^{\rm eff}_\infty=\bigl[1+Y(1-z_\infty)\bigr]^{-1},\qquad
+q_\infty=q^*(S_\infty).
+\]
+\end{proposition}
+\begin{itemize}
+\item Size is set by the scarcer input: a population that values the services ($s^H$), or a
+harvest the state can reach ($s^R$). Improving the other one has no effect.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Size of the state: comparative statics}
+\framesubtitle{Preliminary}
+\begin{columns}[T]
+\column{0.40\textwidth}
+\centering
+\begin{tabular}{lcc}
+\toprule
+ & $s^H$ & $s^R(\omega)$\\
+\midrule
+$\theta_r$ & $+$ & $0$\\
+$e$ & $-$ & $0$\\
+$\omega$ & $0$ & $+$\\
+$Y$ & $+$ & $+$\\
+$\psi,\ \delta,\ \kappa$ & $-$ & $-$\\
+\bottomrule
+\end{tabular}
+\column{0.56\textwidth}
+\begin{itemize}
+\item $\omega$ raises capacity, the tax and effective power iff the state is legibility-limited;
+$\theta_r$ and $e$ matter iff it is legitimacy-limited.
+\item Religiosity rises with $\omega$ iff legibility-limited: legible places are more religious
+because the temple is larger, not because legibility affects belief.
+\end{itemize}
+\end{columns}
+\medskip
+\begin{itemize}
+\item \textbf{Base reach} $\kappa$ lowers capacity but, at the frontier, raises the tax and power:
+more power over a smaller apparatus (the ritual-authority cell).
+\item \textbf{Writing} as a rise in $\omega$ is valuable only to a polity already at the frontier:
+there $\partial T/\partial\omega=r(s)Y>0$, in the interior it is zero.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{What is doing the work, and open issues}
+\begin{columns}[T]
+\column{0.48\textwidth}
+\textbf{Assumptions that matter}
+\begin{itemize}
+\item No commitment within the period; with commitment weights never move.
+\item Priests' payoff linear in revenue. With $U^P=\frac{T^{1-\sigma}}{1-\sigma}-\frac\psi2 i^2$,
+$\psi i=T^{1-\sigma}r'/r$: the channel vanishes at $\sigma=1$.
+\item Fixed observance cost $e$: makes $q^*$ depend on $s$ and creates the participation
+non-convexity behind the trap.
+\item $G=s$: one stock delivers both the services and the fiscal reach.
+\end{itemize}
+\column{0.48\textwidth}
+\textbf{Open}
+\begin{itemize}
+\item Single-peakedness of $\Omega$ is only numerical.
+\item The formation result covers the first delegation; that the polity then reaches $S_\infty$ is
+numerical.
+\item Steady states with nominal power ($\beta>\hat\beta$), the tie-break, and collapse.
+\item Mapping to \citet{cook2026}: is ``formation vs.\ size'' the right analogue of
+``tribe$\to$chiefdom vs.\ chiefdom$\to$state''?
+\item No neighbours, exit or conquest.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}[allowframebreaks]{References}
+\footnotesize
+\bibliographystyle{apsr}
+\bibliography{references}
+\end{frame}
+
+\end{document}
