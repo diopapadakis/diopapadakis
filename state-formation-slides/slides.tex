@@ -432,113 +432,68 @@ religion has no effect on production or the tax base.
 %----------------------------------------------------------------------
 \section{Results}
 
-\begin{frame}{Formation: why the acephalous polity persists}
-\framesubtitle{Preliminary}
-Acephalous: $s_{t-1}=0$ and $\beta_t\le\underline\beta=1/(1+Y)$.
-\begin{enumerate}
-\item No tax $\Rightarrow$ no revenue $\Rightarrow$ no investment, so capacity stays at zero.
-\item Small changes in $\beta$ below $\underline\beta$ change nothing.
-\item A delegation just above $\underline\beta$ builds some capacity, but if $s<\underline s$ no one
-joins the cult and no one values it: a pure transfer to the priests, which the current weights
-reject. Culture is frozen as well.
-\end{enumerate}
-\medskip
-$\Rightarrow$ Only a delegation large enough to push capacity above $\underline s$ \emph{in a single
-period} can pay, and whether it does depends on how many farmers are (latently) religious.
-\end{frame}
+% Results slides: smaller frame titles so the long titles fit on one line
+\setbeamerfont{frametitle}{size=\large,series=\bfseries}
 
-%----------------------------------------------------------------------
-\begin{frame}{Leaving the acephalous state}
-\framesubtitle{Preliminary}
-\small
-From $s_{t-1}=0$: $z(b),s(b)$ the equilibrium at weight $b$, $A(b)=z(b)Y-\tfrac\psi2 s(b)^2$ the
-priests' payoff. $s^R_0(\omega)$ solves $\psi s=\omega\,r'(s)\,Y$; the legibility floor $\omega_0$
-solves $s^R_0(\omega_0)=\underline s$.
-\begin{proposition}[Leaving the acephalous state]
-Let $\beta_t<\underline\beta$ and let the religious share be $q_t$.
-\begin{enumerate}[(a)]
-\item If $\omega\le\omega_0$, the polity remains acephalous for every $q_t$.
-\item If $\omega>\omega_0$, it delegates and acquires capacity iff $q_t>\bar q(\beta_t;\omega)$,
-\[
-\bar q(\beta_t;\omega)=\min_{b:\ s(b)>\underline s}\
-\frac{-\beta_tA(b)-(1-\beta_t)\log\bigl(1-z(b)\bigr)}{(1-\beta_t)\bigl(\theta_rv(s(b))-e\bigr)}>0 .
-\]
-\item $\bar q$ is strictly decreasing in $\beta_t$ and $\theta_r$, strictly increasing in $e$.
-\item $\bar q$ is non-increasing in $\omega$, and constant once the minimising delegation leaves
-the priests below full reach.
-\end{enumerate}
-\end{proposition}
-\end{frame}
-
-%----------------------------------------------------------------------
-\begin{frame}{Formation: reading the threshold}
-\framesubtitle{Preliminary}
+\begin{frame}{Some preliminary results (Claude) - State Formation}
+Start from an \emph{acephalous} polity: no inherited capacity, and priests too weak to tax.
 \begin{itemize}
-\item Numerator: the cost of the delegation, a transfer to the priests that the current weights
-dislike ($\beta_t<\underline\beta$). Denominator: the benefit per believer once the cult is worth
-joining.
-\item \textbf{Substitutes for religion}: inherited authority $\beta_t$, a higher valuation
-$\theta_r$, a lower observance cost $e$.
-\item \textbf{Legibility matters only through a floor}: $\omega$ truncates the menu of delegations
-at full reach; once the truncation does not bind, more legibility does not help formation.
-\item \textbf{Forming is harder than keeping}: building $\underline s$ from nothing costs
-$\psi\underline s^2/2$, maintaining it costs $\psi(\delta\underline s)^2/2$. The acephalous polity
-and the state can both be long-run outcomes.
-\item \textbf{Stasis, then a fast transition}: the acephalous polity is absorbing, so formation waits
-for a slowly moving parameter (e.g.\ $\psi$) to push $\bar q$ below $q_t$.
+\item \textbf{The acephalous polity is a trap.} No tax, no revenue, no investment. A small
+delegation builds too little capacity for anyone to join the cult, so it is a pure transfer to the
+priests, which the farmers reject. Religion stays frozen.
+\item \textbf{Leaving requires a big push.} Only a delegation that lifts capacity above the
+participation threshold in one period can pay, and only if enough farmers are (latently)
+religious: there is a threshold religious share.
+\item \textbf{What lowers the threshold.} Inherited authority of the priests, a higher value of the
+temple's services, a lower observance cost. In simulations also cheaper capacity, and inherited
+capacity: a temple built earlier substitutes for believers.
+\item \textbf{What raises it} (simulations). Higher base reach $\kappa$: when much can be taken
+without administration, a given tax induces less building, so the transfer buys less of what
+farmers value.
 \end{itemize}
 \end{frame}
 
 %----------------------------------------------------------------------
-\begin{frame}{Size of the state: steady-state loci}
-\framesubtitle{Preliminary}
-Steady states with $s>0$, $0<q<1$ and no nominal weight: $i=\delta s$ and $q=q^*(s)$.
+\begin{frame}{Some preliminary results (Claude) - State Formation}
 \begin{itemize}
-\item \textbf{Capacity locus} (the tax that makes the priests maintain $s$):
-\[
-z=Z_C(s)\equiv\frac{\psi\delta s\,r(s)}{Y\,r'(s)},\qquad\text{increasing}.
-\]
-\item \textbf{Institutional--cultural locus} (delegation margin $=0$ at $q=q^*(s)$):
-\[
-\frac{\beta}{1-\beta}=B(s)\equiv\frac{\bigl(\theta_r-e/v(s)\bigr)\,v'(s)}{\psi\delta s},
-\qquad\text{zero at }\underline s\text{, rises, then falls}.
-\]
-\item \textbf{Tax rule}: $\beta/(1-\beta)=1/\bigl(Y(1-z)\bigr)$.
-\end{itemize}
-Interior steady states solve $\ \Omega(s)\equiv Y\,B(s)\bigl(1-Z_C(s)\bigr)=1$.
-
-\medskip
-Legibility enters neither locus, only the \textbf{reach frontier} $z=\rho(s,\omega)$, which meets
-the capacity locus at $s^R(\omega)$: $\ \psi\delta s=\omega\,Y\,r'(s)$.
-\end{frame}
-
-%----------------------------------------------------------------------
-\begin{frame}{Size of the state: the scarcer resource}
-\framesubtitle{Preliminary}
-\begin{proposition}[Long run]
-Suppose $\Omega$ is single-peaked on $(\underline s,\bar s)$ with $\max\Omega>1$, so that
-$\Omega=1$ has roots $s^L<s^H$. If $s^R(\omega)<s^L$ there is no steady state with positive
-capacity. Otherwise every such steady state has capacity $s^L$ or
-\[
-S_\infty=\min\bigl\{\,s^H,\ s^R(\omega)\,\bigr\},
-\]
-\emph{legitimacy-limited} ($\tau<1$) if $s^H\le s^R(\omega)$ and \emph{legibility-limited}
-($\tau=1$) otherwise. $S_\infty$ is a steady state if $(1-\delta)S_\infty>\underline s$, with
-\[
-z_\infty=Z_C(S_\infty),\qquad
-\beta^{\rm eff}_\infty=\bigl[1+Y(1-z_\infty)\bigr]^{-1},\qquad
-q_\infty=q^*(S_\infty).
-\]
-\end{proposition}
-\begin{itemize}
-\item Size is set by the scarcer input: a population that values the services ($s^H$), or a
-harvest the state can reach ($s^R$). Improving the other one has no effect.
+\item \textbf{Legibility matters only through a floor.} Below a minimum legibility no state forms,
+whatever the religious share. Above it, more legibility helps only while it limits how large a
+delegation can be; beyond that it is irrelevant for formation.
+\item \textbf{Forming is harder than keeping.} Forming needs capacity above the participation
+threshold within one period; keeping a state needs only replacing depreciation. A state can be
+sustainable but unreachable, so both outcomes can be long-run, and history decides.
+\item \textbf{Long stasis, then a fast transition.} The acephalous polity is absorbing, so formation
+waits for a slowly moving parameter (e.g.\ the cost of capacity falling as know-how accumulates)
+to push the threshold below the religious share. Then capacity rises within a few periods. The
+model explains the suddenness, not the timing.
+\item \textbf{Sequencing} (simulations). Power moves first, capacity follows, and religiosity
+adjusts last and most slowly.
 \end{itemize}
 \end{frame}
 
 %----------------------------------------------------------------------
-\begin{frame}{Size of the state: comparative statics}
-\framesubtitle{Preliminary}
+\begin{frame}{Some preliminary results (Claude) - Steady State Comp. Statics}
+Comparative statics of the \emph{long-run state}: the stable steady state with positive capacity,
+where investment just replaces depreciation, the religious share is at its attractor, and the
+priests' weight no longer changes.
+\begin{itemize}
+\item \textbf{Size is set by the scarcer resource.} Long-run capacity is the smaller of two levels:
+\begin{itemize}
+\item a \emph{legitimacy} level $s^H$: the largest capacity at which the farmers' valuation of more
+capacity still justifies the extra power needed to induce it;
+\item a \emph{legibility} level $s^R(\omega)$: the capacity the priests maintain when they already
+tax everything within reach, so more power buys nothing.
+\end{itemize}
+The state is \emph{legitimacy-limited} or \emph{legibility-limited}. Improving the scarce
+resource raises capacity; improving the other has no effect.
+\item \textbf{Power, tax and religion follow capacity.} The long-run tax is what the priests need
+to maintain that capacity, power is the weight that delivers that tax, and religiosity is what a
+temple of that size sustains. All three rise with long-run capacity.
+\end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------
+\begin{frame}{Some preliminary results (Claude) - Steady State Comp. Statics}
 \begin{columns}[T]
 \column{0.40\textwidth}
 \centering
@@ -546,29 +501,38 @@ harvest the state can reach ($s^R$). Improving the other one has no effect.
 \toprule
  & $s^H$ & $s^R(\omega)$\\
 \midrule
-$\theta_r$ & $+$ & $0$\\
-$e$ & $-$ & $0$\\
-$\omega$ & $0$ & $+$\\
-$Y$ & $+$ & $+$\\
+$\theta_r$ (valuation) & $+$ & $0$\\
+$e$ (observance) & $-$ & $0$\\
+$\omega$ (legibility) & $0$ & $+$\\
+$Y$ (endowment) & $+$ & $+$\\
 $\psi,\ \delta,\ \kappa$ & $-$ & $-$\\
 \bottomrule
 \end{tabular}
+
+\smallskip
+\raggedright\footnotesize
+Effect of each parameter on the two levels; long-run capacity moves with whichever one binds.
 \column{0.56\textwidth}
 \begin{itemize}
-\item $\omega$ raises capacity, the tax and effective power iff the state is legibility-limited;
-$\theta_r$ and $e$ matter iff it is legitimacy-limited.
-\item Religiosity rises with $\omega$ iff legibility-limited: legible places are more religious
-because the temple is larger, not because legibility affects belief.
+\item Legibility raises capacity, the tax and power only if the state is legibility-limited;
+$\theta_r$ and $e$ matter only if it is legitimacy-limited.
+\item Religiosity rises with $\theta_r$ and falls with $e$ always. It rises with legibility only if
+legibility-limited: the temple is larger, belief is not directly affected.
 \end{itemize}
 \end{columns}
 \medskip
 \begin{itemize}
-\item \textbf{Base reach} $\kappa$ lowers capacity but, at the frontier, raises the tax and power:
-more power over a smaller apparatus (the ritual-authority cell).
-\item \textbf{Writing} as a rise in $\omega$ is valuable only to a polity already at the frontier:
-there $\partial T/\partial\omega=r(s)Y>0$, in the interior it is zero.
+\item \textbf{Base reach} $\kappa$ lowers capacity but, at the reach frontier, raises the tax and
+power: more power over a smaller apparatus (the ritual-authority cell).
+\item \textbf{Writing}, read as a rise in legibility, pays only for a polity that already taxes
+everything within reach, and more so the larger its temple.
+\item \textbf{Inherited authority persists.} Priests with weight above the kink keep it and maintain
+frontier capacity even when legitimacy alone would support less.
 \end{itemize}
 \end{frame}
+
+% Back to the default frame-title size
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
 
 %----------------------------------------------------------------------
 \begin{frame}{What is doing the work, and open issues}
