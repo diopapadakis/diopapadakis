@@ -1,7 +1,6 @@
-- 👋 Hi, I’m Dennis (Dionysios) Papadakis
-- 👀 I’m interested in Economics and Mathematics 
-- 🌱 I’m currently studying Math and Econ at NYU Shanghai, and for the past three years I've been living in Berlin, New York and Shanghai.
-- 📫 How to reach me: dp3329@nyu.edu or sotdio@gmail.com (personal)
+- I am a second year Economics PhD student at NYU. So far I have worked in topics related to the theory of culture and cultural transmission, and I enjoy thinking about themes related to (micro)economic theory, political economy, development economics and any combination of them.
+
+- You can find a repo of a journaling app I have been using to organize my schedule and time during my time as a PhD student. 
 
 <!---
 diopapadakis/diopapadakis is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
